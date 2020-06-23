@@ -1,6 +1,6 @@
 ---
-title: Asynchronous JavaScript Using Promises Part 1
-published: true
+title: Asynchronous JavaScript Using Promises Part 12
+published: false
 ---
 
 In web development, asynchronous programming is notorious for being a challenging topic.
@@ -89,7 +89,7 @@ executorFunction() is passed to the constructor and has two functions as paramet
 
 
 
-<!-- ## The Node setTimeout() Function
+## The Node setTimeout() Function
 Knowing how to construct a promise is useful, but most of the time, knowing how to consume, or use, promises will be key. Rather than constructing promises, you’ll be handling Promise objects returned to you as the result of an asynchronous operation. These promises will start off pending but settle eventually.
 
 Moving forward, we’ll be simulating this by providing you with functions that return promises which settle after some time. To accomplish this, we’ll be using setTimeout(). setTimeout() is a Node API (a comparable API is provided by web browsers) that uses callback functions to schedule tasks to be performed after a delay. setTimeout() has two parameters: a callback function and a delay in milliseconds.
@@ -203,4 +203,4 @@ prom.then(handleSuccess, handleFailure);
 Let’s break down what’s happening in the example code:
 
 prom is a promise which will randomly either resolve with 'Yay!'or reject with 'Ohhh noooo!'.
-We pass two handler functions to .then(). The first will be invoked with 'Yay!' if the promise resolves, and the second will be invoked with 'Ohhh noooo!' if the promise rejects. -->
+We pass two handler functions to .then(). The first will be invoked with 'Yay!' if the promise resolves, and the second will be invoked with 'Ohhh noooo!' if the promise rejects.
