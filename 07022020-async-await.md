@@ -1,11 +1,11 @@
 ---
-title: How To Use `Async`/Await (JavaScript)
+title: How To Use Async/Await (JavaScript)
 published: true
 ---
 
 # Introduction
 
-Often in web development, we need to handle `async`hronous actions— actions we can wait on while moving on to other tasks. We make requests to networks, databases, or any number of similar operations. JavaScript is non-blocking: instead of stopping the execution of code while it waits, JavaScript uses an event-loop which allows it to efficiently execute other tasks while it awaits the completion of these `async`hronous actions.
+Often in web development, we need to handle asynchronous actions— actions we can wait on while moving on to other tasks. We make requests to networks, databases, or any number of similar operations. JavaScript is non-blocking: instead of stopping the execution of code while it waits, JavaScript uses an event-loop which allows it to efficiently execute other tasks while it awaits the completion of these `async`hronous actions.
 
 Originally, JavaScript used callback functions to handle `async`hronous actions. The problem with callbacks is that they encourage complexly nested code which quickly becomes difficult to read, debug, and scale. With ES6, JavaScript integrated native promises which allow us to write significantly more readable code. JavaScript is continually improving, and ES8 provides a new syntax for handling our `async`hronous action, `async`...await. The `async`...await syntax allows us to write `async`hronous code that reads similarly to traditional synchronous, imperative programs.
 
