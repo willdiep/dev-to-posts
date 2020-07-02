@@ -1,6 +1,6 @@
 ---
 title: How To Use `Async`/Await (JavaScript)
-published: false
+published: true
 ---
 
 # Introduction
