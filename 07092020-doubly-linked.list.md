@@ -3,7 +3,7 @@ title: What Are Doubly Linked Lists
 published: true
 ---
 
-In my previous blog post, I went over Memory, Arrays, & Linked Lists. This was a gentle introduction to Singly Linked Lists and how it applied to memory stored on the computer.
+In my previous blog post, I went over [Memory, Arrays, & Linked Lists](https://dev.to/wdiep10/memory-arrays-linked-lists-1oa4). This was a gentle introduction to Singly Linked Lists and how it applied to memory stored on the computer.
 
 For this week, I'd like to build on top of it by giving a tutorial of Doubly Linked Lists.
 
