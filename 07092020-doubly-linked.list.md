@@ -1,6 +1,6 @@
 ---
 title: What Are Doubly Linked Lists
-published: false
+published: true
 ---
 
 In my previous blog post, I went over Memory, Arrays, & Linked Lists. This was a gentle introduction to Singly Linked Lists and how it applied to memory stored on the computer.
