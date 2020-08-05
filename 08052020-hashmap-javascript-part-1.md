@@ -1,6 +1,6 @@
 ---
-title: How to Create a Hashmap in JavaScript Part 1
-published: false
+title: How to Create a Hashmap in JavaScript (Part 1)
+published: true
 ---
 
 ## Intro to Hash Maps
