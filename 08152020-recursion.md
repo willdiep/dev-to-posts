@@ -137,7 +137,8 @@ otherwise...
 
 This function will be invoked as many times as there are elements within the list! Let’s step through:
 
-```CALL STACK EMPTY
+```
+CALL STACK EMPTY
 ___________________
 
 Our first function call...
