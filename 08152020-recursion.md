@@ -3,104 +3,216 @@ title: Recursion in JavaScript
 published: false
 ---
 
-## Intro to Hash Maps
+Have you ever thought about what would happen if you called a function or method from within that function or method? That’s called recursion and can actually make your program more efficient. It can be used for problems that can be broken up into multiple steps, often ones that you would otherwise solve iteratively. It will also be used in some of the traversal and sort algorithms that you will see later.
 
-Hash maps are data structures that serve as efficient key-value stores. They are capable of assigning and retrieving data in the fastest way possible. This is because the underlying data structure that hash maps use is an array.
 
-A value is stored at an array index determined by plugging the key into a hash function. Because we always know exactly where to find values in a hash map, we have constant access to any of the values it contains.
+## Introduction to Recursion
 
-This quick access to values makes a hash map a good choice of data structure whenever we need to store a lot of values but need fast look-up time.
+You’ve heard about a trendy new spot that sells fruit sandwiches. What are fruit sandwiches? You have no idea, but you’re eager to find out!
 
-In JavaScript, objects are often used to map keys to values as in a hash map, but in this lesson, you’ll create your own implementation of a hash map by building out a HashMap class. You’ll build methods to hash and compress a given key, assign an index at which to store a value, and retrieve that value.
+Sadly, when you arrive at the store, the line is out the door and around the block. Undeterred, you hatch a plan to find out how many people are in line before you.
 
-To implement a hash map, the HashMap constructor method will create an empty array that will hold values. A hashing function will return an index in the array where the value will be stored. While going through the following exercises, remember that the purpose of this lesson is to gain a deeper understanding of the data structure rather than creating a production-quality data structure.
+You tap the person in front of you and ask them how many people are ahead of them. They have no idea, (the line is huge!) so they ask you to wait a moment and tap the person in front of them, repeating this process through the line.
 
-```javascript
-class HashMap {
-  constructor(size = 0) {
-    this.hashmap = new Array(size)
-      .fill(null);
-  }
-}
-```
+Finally, the second to last person taps the person at the front of the line. Nobody is ahead of them, so they reply “It’s just me so: one person!”. Then this message is repeated back down the line.
 
-## Hashing
+The next person says “okay, there was one person ahead of me, I’ll add myself… I can tell the person behind me: 2 people in line.”
 
-The hashing function is the secret to efficiently storing and retrieving values in a hash map. A hashing function takes a key as input and returns an index within the hash map’s underlying array.
+Each person waiting for a reply:
 
-This function is said to be deterministic. That means the hashing function must always return the same index when given the same key. This is important because we will need to hash the key again later to retrieve the stored value. We won’t be able to do this unless our hashing function behaves in a predictable and consistent way.
+1. receives the message
+1. adds themselves to the count
+1. responds to the person tapping them
 
-Getting an integer representing an index can be done by summing the character codes, or integer representation, of all the characters in the key, a string. A variable can be used to keep track of the running total of the character codes until .hash() is finished looping over the key and the sum can be returned.
+This chain eventually reaches you with the final number. Your plan was a success!
 
-The code for the hashing function should look something like this:
+You executed a recursive strategy. The “function” of asking a person involved asking a person. The self-referential logic can seem like it goes on forever, but each question brings you closer to the front of the line where no more people are asked about the line.
 
-```
-declare hashCode variable with value of 0
+Your approach had two aspects which are essential to recursive thinking. Break the problem into two possibilities:
 
-for each character in the key
-  add the character code value to hashCode
+1. There’s nobody left in line, don’t ask
+2. There’s someone in line, ask them
 
-return hashCode
-```
+We repeat Step 2 with a different input which brings us closer to Step 1.
 
-```javascript
-class HashMap {
-  constructor(size = 0) {
-    this.hashmap = new Array(size)
-      .fill(null);
-  }
+![queue](https://s3.amazonaws.com/zweb-s3.uploads/carp/2011/08/iStock_000001999765XSmall.jpg)
 
-  hash(key) {
-    let hashCode = 0;
+<sub>[Image credits to CARP.ca](https://www.carp.ca/2015/10/13/thanks-for-the-long-line-ups-at-the-advance-polls/)</sub>
 
-    for (let i = 0; i < key.length; i++) {
-      hashCode += hashCode + key.charCodeAt(i);
-    }
 
-    return hashCode
-  }
-}
-```
 
-## Compression
-The current hashing function will return a wide range of integers — some of which are not indices of the hash map array. To fix this, we need to use compression.
+### Recursion Outline
 
-Compression means taking some input and returning an output only within a specific range.
+Recursion is a strategy for solving problems by defining the problem in terms of itself. For example, to sum the elements of a list we would take the first element and add it to the sum of the remaining elements.
 
-In our hash map implementation, we’re going to have our hashing function handle compression in addition to hashing. This means we’ll add an additional line of code to compress the hashCode before we return it.
+How would we get that sum of remaining elements? Easy! We’d take the first element of the remaining elements and add it to the… Maybe you can understand why recursion can be a tricky subject!
 
-The updated .hash() should follow these steps:
+In programming, recursion means a function definition will include an invocation of the function within its own body. Here’s a pseudo-code example:
 
 ```
-initialize hashCode variable to 0
-
-for each character in the key
-   add the character code and hashCode to hashCode
-
-return compressed hashCode
+define function, speller
+  if there are no more letters
+    print "all done"
+  print the first letter
+  invoke speller with the given name minus the first letter
 ```
 
-```javascript
-class HashMap {
-  constructor(size = 0) {
-    this.hashmap = new Array(size)
-      .fill(null);
-  }
+If we invoked this function with “Zoe” as the argument, we would see “Z”, “o”, and “e” printed out before “all done”.
 
-  hash(key) {
-    let hashCode = 0;
-    for (let i = 0; i < key.length; i++) {
-      hashCode += hashCode + key.charCodeAt(i);
-    }
-    return hashCode % this.hashmap.length;
-  }
-}
+We call the function a total of 4 times!
+
+1. function called with “Zoe”
+1. function called with “oe”
+1. function called with “e”
+1. function called with “”
+
+Let’s break the function into three chunks:
+
+```
+if there are no more letters
+    print "all done"
+```
+
+This section is the base case. We are NOT invoking the function under this condition. The equivalent base case from the previous exercise was when we had reached the front of the line.
+
+```
+print the first letter
+```
+
+This section solves a piece of the problem. If we want to spell someone’s name, we’ll have to spell at least one letter.
+
+```
+invoke speller with the given name minus the first letter
+```
+
+This section is the recursive step, calling the function with arguments which bring us closer to the base case. In this example, we’re reducing the length of the name by a single letter. Eventually, there will be a function call with no letters given as the argument.
+
+For comparison’s sake, here is pseudo-code for an iterative approach to the same problem:
+
+```
+define function, speller
+for each letter in the name argument
+    print the letter
+print "all done"
+````
+
+### Call Stacks and Execution Frames
+
+A recursive approach requires the function invoking itself with different arguments. How does the computer keep track of the various arguments and different function invocations if it’s the same function definition?
+
+Repeatedly invoking functions may be familiar when it occurs sequentially, but it can be jarring to see this invocation occur within a function definition.
+
+Languages make this possible with call stacks and execution contexts.
+
+Stacks, a data structure, follow a strict protocol for the order data enters and exits the structure: the last thing to enter is the first thing to leave.
+
+Your programming language often manages the call stack, which exists outside of any specific function. This call stack tracks the ordering of the different function invocations, so the last function to enter the call stack is the first function to exit the call stack
+
+we can think of execution contexts as the specific values we plug into a function call.
+
+```
+A function which adds two numbers:
+
+Invoking the function with 3 and 4 as arguments...
+execution context:
+X = 3
+Y = 4
+
+Invoking the function with 6 and 2 as arguments...
+execution context:
+X = 6
+Y = 2
 ```
 
 
+Consider a pseudo-code function which sums the integers in an array:
+
+```
+function, sum_list 
+if list has a single element
+    return that single element
+otherwise...
+    add first element to value of sum_list called with every element minus the first
+```
+
+This function will be invoked as many times as there are elements within the list! Let’s step through:
+
+```CALL STACK EMPTY
+___________________
+
+Our first function call...
+sum_list([5, 6, 7])
+
+CALL STACK CONTAINS
+___________________
+sum_list([5, 6, 7])
+with the execution context of a list being [5, 6, 7]
+___________________
+
+Base case, a list of one element not met.
+We invoke sum_list with the list of [6, 7]...
+
+CALL STACK CONTAINS
+___________________
+sum_list([6, 7])
+with the execution context of a list being [6, 7]
+___________________
+sum_list([5, 6, 7])
+with the execution context of a list being [5, 6, 7]
+___________________
+
+Base case, a list of one element not met.
+We invoke sum_list with the list of [7]...
+
+CALL STACK CONTAINS
+___________________
+sum_list([7])
+with the execution context of a list being [7]
+___________________
+sum_list([6, 7])
+with the execution context of a list being [6, 7]
+___________________
+sum_list([5, 6, 7])
+with the execution context of a list being [5, 6, 7]
+___________________
+
+We've reached our base case! List is one element. 
+We return that one element.
+This return value does two things:
+
+1) "pops" sum_list([7]) from CALL STACK.
+2) provides a return value for sum_list([6, 7])
+
+----------------
+CALL STACK CONTAINS
+___________________
+sum_list([6, 7])
+with the execution context of a list being [6, 7]
+RETURN VALUE = 7
+___________________
+sum_list([5, 6, 7])
+with the execution context of a list being [5, 6, 7]
+___________________
+
+sum_list([6, 7]) waits for the return value of sum_list([7]), which it just received. 
+
+sum_list([6, 7]) has resolved and "popped" from the call stack...
 
 
+----------------
+CALL STACK contains
+___________________
+sum_list([5, 6, 7])
+with the execution context of a list being [5, 6, 7]
+RETURN VALUE = 6 + 7
+___________________
+
+sum_list([5, 6, 7]) waits for the return value of sum_list([6, 7]), which it just received. 
+sum_list([5, 6, 7]) has resolved and "popped" from the call stack.
 
 
-
-
+----------------
+CALL STACK is empty
+___________________
+RETURN VALUE = (5 + 6 + 7) = 18
+```
