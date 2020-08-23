@@ -1,5 +1,5 @@
 ---
-title:  Asymptotic Notation
+title:  Asymptotic Notation (Part 1)
 published: false
 ---
 
@@ -26,3 +26,37 @@ For instance, a program that has input of size N may tell the computer to run 5N
 ![queue](https://secureservercdn.net/160.153.137.40/662.aa9.myftpupload.com/wp-content/uploads/2019/11/Time-Complexity.png)
 
 <sub>[Image credits to Algorithms And Me](https://algorithmsandme.com/common-time-complexities-of-functions/)</sub>
+
+For example, when N is 1000:
+
+- the N2 term is 1,000,000
+- the N term is 1,000
+
+As you can see, the N2 term is much more significant than the N term. When N is larger than 1000, the difference becomes even more significant. Because the difference is so enormous, we don’t even need to consider the N term when calculating the runtime. Thus, for this program, we would describe the runtime in terms of N2. There are three different ways we could describe the runtime of this program: big Theta or Θ(N2), big O or O(N2), big Omega or Ω(N2). 
+
+## Big Theta (Θ)  
+
+The first subtype of asymptotic notation we will explore is big Theta (denoted by Θ). We use big Theta when a program has only one case in term of runtime. But what exactly does that mean? Take a look at the pseudocode for a function that prints the values in a list below:
+
+```
+Function with input that is a list of size N:
+   For each value in list:
+    Print the value
+```
+
+The number of instructions the computer has to perform is based on how many iterations the loop will do because if the loop does more iterations, then the computer will perform instructions. Now, let’s see how many iterations the loop will do dependent on the value of N.
+
+As we can see in every case, with a list of size N, the program has a runtime of N because the program has to print a value N times. Thus, we would say the runtime is Θ(N).
+
+Let’s look at a more complicated example. In the following pseudocode program, the function takes in an integer, N, and counts the number of times it takes for N to be divided by 2 until N reaches 1.
+
+```
+Function that has integer input N:
+  Set a count variable to 0
+  Loop while N is not equal to 1:
+      Increment count
+      N = N/2
+  Return count
+```
+
+But what happens when there are multiple runtime cases for a single program? Stay tune for part 2 next week!
