@@ -1,6 +1,6 @@
 ---
 title:  Asymptotic Notation (Part 1)
-published: false
+published: true
 ---
 
 When writing programs, it’s important to make smart programming choices so that code runs most efficiently. Computers seem to take no time evaluating programs, but when scaling programs to deal with massive amounts of data, writing efficient code becomes the difference between success and failure. In computer science, we define how efficient a program is by its runtime.
