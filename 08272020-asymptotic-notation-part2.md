@@ -1,5 +1,5 @@
 ---
-title:  Asymptotic Notation (Part 1)
+title:  Asymptotic Notation (Part 2)
 published: false
 ---
 
