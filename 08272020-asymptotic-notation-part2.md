@@ -1,6 +1,6 @@
 ---
 title:  Asymptotic Notation (Part 2)
-published: false
+published: true
 ---
 
 Welcome back for part 2 for our introduction to Asymptotic Notation! Let's resume by talking about common runtimes:
