@@ -1,6 +1,6 @@
 ---
 title:  Binary Search and Search Trees
-published: false
+published: true
 ---
 
 Let's build up on our introduction to Trees from last week:
