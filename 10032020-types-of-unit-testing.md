@@ -1,6 +1,6 @@
 ---
 title: Types of Unit Testing
-published: false
+published: true
 ---
 
 ### Introduction
