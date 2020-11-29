@@ -2,7 +2,7 @@
 title: Machine Learning Basics
 published: true
 ---
-Update on Nov. 29 - five days after publishing this article, I decided to add the "Gradient Descent for Slope" section. I hope this helps extend your knowledge of "Gradient Descent for Intercept." I will update more content on here next week! Stay tuned.
+**Update on Nov. 29 - five days after publishing this article, I decided to add the "Gradient Descent for Slope" section. I hope this helps extend your knowledge of "Gradient Descent for Intercept." I will update more content on here next week! Stay tuned.**
 
 
 ### Introduction to Linear Regression
