@@ -1,6 +1,6 @@
 ---
 title: Machine Learning Basics
-published: false
+published: true
 ---
 
 ### Introduction to Linear Regression
